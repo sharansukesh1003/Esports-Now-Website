@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<!--Heading-->
+<h2 class="mt-3 topic-heading"> {{ heading_1 }} </h2>
+<div class="underline"></div>
+<!--Carousel-->
+<div id="carouselExampleCaptions" class="carousel slide mt-3" data-bs-ride="carousel">
+  <!--Carousel-Indicators-->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <!--Carousel-Items-->
+  <div class="carousel-inner">
+    {% for carousel in carousel_data reversed %}
+    <a href="{{ carousel.article_link }}"></a>
+    <div class="carousel-item carousel-height {% if forloop.counter0 == 0 %} active {% endif %} ">
+      <img src="{{ carousel.image_url }}" class="d-block w-100 h-100 carousel-image " alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ carousel.title }}</h5>
+        <div class="underline"></div>
+        <p>{{ carousel.description }}.</p>
+      </div>
+    </div>
+    </a>
+    {% endfor %}
+  </div>
+  <!--Carousel-Buttons-->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<h2 class="mt-3 topic-heading"> {{ heading_2 }} </h2>
+<div class="underline mb-3"></div>
+{% for article in articles reversed %}
+<div class="row">
+  <div class="col-xl-3">
+    <img src="{{ article.image_url }}" class="w-100 h-100 image-stretch" alt="">
+  </div>
+  <div class="col-xl-5 my-auto">
+    <h4>{{ article.category }}</h4>
+    <h2>{{ article.title|truncatechars:100 }}</h2>
+    <div class="underline mb-2"></div>
+    <h5>{{ article.description|truncatechars:150 }}</h5>
+    <h6 class="d-flex justify-content-end">
+      <span class="secondary-color">
+        {{ article.date_time|timesince }}
+      </span>
+      &nbsp;ago
+    </h6>
+  </div>
+</div>
+<hr class="col-xl-8">
+{% endfor %}
+<div class="loader mx-auto mb-3"></div>
+{% endblock %}
