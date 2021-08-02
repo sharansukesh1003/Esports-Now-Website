@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="topic-heading"> {{ title }} </h2>
+<div class="underline"></div>
+{% for article in article_list reversed %}
+<a href="{% url 'detail' pk=article.id %}">
+<div class="row mt-4">
+  <div class="col-xl-3">
+    <img src="{{ article.image_url }}" class="w-100 h-100 image-stretch" alt="">
+  </div>
+  <div class="col-xl-5 my-auto">
+    <h6 class="text-capitalize secondary-color">{{ article.category }}</h6>
+    <h4>{{ article.title|truncatechars:100 }}</h4>
+    <div class="underline mb-2"></div>
+    <p class="text-muted">{{ article.description|truncatechars:150 }}</p>
+    <h6 class="d-flex justify-content-end">
+      <span class="secondary-color">
+        {{ article.date_time|timesince }}
+      </span>
+      &nbsp;ago
+    </h6>
+  </div>
+</div>
+</a>
+<hr class="col-xl-8">
+{% endfor %}
+{% endblock %}
