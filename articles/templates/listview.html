@@ -3,7 +3,7 @@
 <h2 class="topic-heading"> {{ title }} </h2>
 <div class="underline"></div>
 <div class="container infinite-container">
-  {% for article in article_list %}
+  {% for article in article_list reversed %}
   <a class="infinite-item" href="{% url 'detail' pk=article.id %}">
     <div class="row mt-4">
       <div class="col-xl-3">
@@ -26,12 +26,14 @@
   </a>
   {% endfor %}
 </div>
+<div class="loader mx-auto mb-3"></div>
 <span class="col-12 mt-5">
   {% if page_obj.has_next %}
   <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}"></a>
+  {% else %}
+  <h4 class="text-center">The End</h4>
   {% endif %}
 </span>
-<div class="loader mx-auto mb-3 d-none"></div>
 <script src="/static/js/jquery.waypoints.min.js"></script>
 <script src="/static/js/infinite.min.js"></script>
 <script src="/static/js/app.js"></script>
