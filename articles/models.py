@@ -11,6 +11,9 @@ class HomePageArtcile(models.Model):
     date_time = models.DateTimeField(default=now)
     article = models.TextField(max_length=4000,default='empty')
 
+    class Meta:
+        ordering = ['date_time']
+
 class HomePageCarousel(models.Model):
     title = models.TextField(max_length=256)
     description = models.TextField(max_length=256)

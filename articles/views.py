@@ -1,10 +1,7 @@
-from django.core import paginator
-from django.shortcuts import get_object_or_404, render
 from django.views.generic.base import TemplateView
 from .models import HomePageArtcile,HomePageCarousel
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.core.paginator import Paginator
 
 # def home_view(request):
 #     article = HomePageArtcile.objects.filter(category__icontains= 'general')
@@ -21,6 +18,11 @@ class HomeView(ListView):
     template_name = 'home.html'
     carousel = HomePageCarousel.objects.all()[:3]
     extra_context = {'heading_1':'Top Stories','carousel_data': carousel,'heading_2':'Featured'}
+
+class CarouselArticleDetailView(DetailView):
+    model = HomePageCarousel
+    context_object_name = 'detail_article_view'
+    template_name = 'detail.html'
 
 class ArticleDetailView(DetailView):
     model = HomePageArtcile

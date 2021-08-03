@@ -6,10 +6,10 @@
   {% for article in article_list reversed %}
   <a class="infinite-item" href="{% url 'detail' pk=article.id %}">
     <div class="row mt-4">
-      <div class="col-xl-3">
+      <div class="col-xl-3 pe-0">
         <img src="{{ article.image_url }}" class="w-100 h-100 image-stretch" alt="">
       </div>
-      <div class="col-xl-5 my-auto">
+      <div class="col-xl-5 my-auto mt-2 mt-xl-none">
         <h6 class="text-capitalize secondary-color">{{ article.category }}</h6>
         <h4>{{ article.title|truncatechars:100 }}</h4>
         <div class="underline mb-2"></div>

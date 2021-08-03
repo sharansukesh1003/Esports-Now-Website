@@ -18,6 +18,7 @@ body {
 
 .carousel-image {
     object-fit: cover !important;
+    opacity: 0.7;
 }
 
 .underline {
@@ -99,4 +100,37 @@ a {
 
 .article-detail-view-image{
     height: 50vh;
+}
+
+.carousel-btn {
+    height: 15px !important;
+    width: 15px !important;
+    border-radius: 50%;
+  }
+  
+  .carousel-indicators li {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    text-indent: 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    transition: width 0.3s;
+  }
+  
+  .carousel-indicators .active {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #FF0000 !important;
+  }
+  
+  .carousel-indicators [data-bs-target] {
+    background-color: #5B5B5B;
+  }
+
+.category-box{
+    background-color: white;
+    width: auto;
 }
