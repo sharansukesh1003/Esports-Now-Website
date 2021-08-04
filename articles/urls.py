@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^csgo/(?P<pk>[-\w]+)/$',views.ArticleDetailView.as_view(),name='csgo_detail'),
     url(r'^mobileesports/(?P<pk>[-\w]+)/$',views.ArticleDetailView.as_view(),name='mobile_detail'),
     url(r'^(?P<pk>[-\w]+)/$',views.ArticleDetailView.as_view(),name='detail'),
+    url(r'^trending/(?P<pk>[-\w]+)/$',views.CarouselArticleDetailView.as_view(),name='detail_carousel'),
 ]
 urlpatterns += static(settings.STATIC_URL,
                           document_root=settings.STATIC_ROOT)

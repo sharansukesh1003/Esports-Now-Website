@@ -16,9 +16,9 @@
   </div>
   <!--Carousel-Items-->
   <div class="carousel-inner">
-    {% for carousel in carousel_data %}
+    {% for carousel in carousel_data reversed%}
     <div class="carousel-item carousel-height {% if forloop.counter0 == 0 %} active {% endif %}">
-      <a href="{% url 'detail' pk=carousel.id %}">
+      <a href="{% url 'detail_carousel' pk=carousel.id %}">
       <img src="{{ carousel.image_url }}" class="d-block w-100 h-100 carousel-image " alt="...">
     </a>
       <div class="carousel-caption">

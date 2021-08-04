@@ -10,24 +10,30 @@ from django.views.generic.detail import DetailView
 #     context = {'heading_1':'Top Stories','articles': article, 'carousel_data': carousel,'heading_2':'Featured'}
 #     return render(request,'home.html',context=context)
 
+class CarouselArticleDetailView(DetailView):
+    model = HomePageCarousel
+    context_object_name = 'detail_article_view'
+    template_name = 'detail_carousel.html'
+
 class HomeView(ListView):
     model = HomePageArtcile
     context_object_name = 'articles'
     queryset = HomePageArtcile.objects.filter(category__icontains= 'general')
-    paginate_by = 5
+    paginate_by = 3
     template_name = 'home.html'
     carousel = HomePageCarousel.objects.all()[:3]
     extra_context = {'heading_1':'Top Stories','carousel_data': carousel,'heading_2':'Featured'}
 
-class CarouselArticleDetailView(DetailView):
-    model = HomePageCarousel
-    context_object_name = 'detail_article_view'
-    template_name = 'detail.html'
-
 class ArticleDetailView(DetailView):
     model = HomePageArtcile
     context_object_name = 'detail_article_view'
-    template_name = 'detail.html'
+    template_name = 'detail_article.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
+        context['home_page_article'] = HomePageArtcile.objects.filter(pk=self.kwargs.get('pk'))
+        context['carousel_article'] = HomePageCarousel.objects.filter(pk=self.kwargs.get('pk'))
+        return context
 
 class ValorantArticleView(ListView):
     model = HomePageArtcile

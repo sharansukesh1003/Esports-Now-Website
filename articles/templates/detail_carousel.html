@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="article-detail-view-image">
+  <img src="{{ detail_article_view.image_url }}" class="w-100 h-100 image-stretch" alt="">
+</div>
+<h4 class="text-capitalize mt-2">{{ detail_article_view.category }}</h4>
+<div class="underline mb-2"></div>
+<h2>{{ detail_article_view.title }}</h2>
+<hr>
+<p class="text-muted">{{ detail_article_view.article }}</p>
+{% endblock %}
